@@ -47,7 +47,7 @@ export default function Problems() {
                     <h2 className="text-2xl font-bold">Problems</h2>
                 </div>
                 <div className="mb-6">
-                    <p className="text-zinc-600">0 of {problems.length} Problems Solved</p>
+                    {/* <p className="text-zinc-600">0 of {problems.length} Problems Solved</p> */}
                     {/* <div className="w-full bg-zinc-200 rounded-full h-2.5 dark:bg-zinc-700">
                         <div className="bg-green-500 h-2.5 rounded-full" style={{ width: "12%" }}></div>
                     </div> */}
@@ -69,7 +69,7 @@ export default function Problems() {
                         <div className="border-b py-4" key={problem._id} onClick={()=>handleClick(problem._id)}>
                             <h3 className="text-lg font-semibold">{problem.statement.substr(0,60)}....</h3>
                             <div className="flex justify-between items-center">
-                                <span className="bg-green-200 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Solved</span>
+                                <span className="bg-green-200 text-green-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">{problem.tags[problem.tags.length-1]}</span>
                                 <div className="text-right">
                                     <span className="text-zinc-500">{problem.difficulty}</span>
                                 </div>

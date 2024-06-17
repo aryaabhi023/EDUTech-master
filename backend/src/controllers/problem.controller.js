@@ -84,7 +84,6 @@ export const getProblemsByDifficulties = async (req, res) => {
 
 export const checkAnswerAndGetScore = async (req, res) => {
   try {
-    console.log(req.body);
     const user = req.user;
     const { problemId,answer } = req.body;
     const problem = await Problem.findById(problemId);

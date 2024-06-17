@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from'react-router-dom';
-import { checkAnswerAndGetScore, getProblemById } from '../Connection/problem';
+import { addSolvedProblem, checkAnswerAndGetScore, getProblemById, getSolvedProblemById } from '../Connection/problem';
 
 const InsideProblem= () => {
   const { problemId } = useParams();
@@ -15,18 +15,37 @@ const InsideProblem= () => {
   const [selectedAnswer, setSelectedAnswer] = useState('');
   const [feedback, setFeedback] = useState('');
 
+  let color;
+  if (feedback === 'Correct!') {
+    color = 'text-green-500';
+  } else if (feedback === 'Incorrect. Try again!') {
+    color ='text-red-500';
+  } else {
+    color = 'text-zinc-800';
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    checkAnswerAndGetScore({
-      id:problemId,
-      answer: selectedAnswer,
-    }).then((res) => {
-        if (res.data) {
-            setFeedback('Correct!');
-          } else {
-            setFeedback('Incorrect. Try again!');
-          }
-    });
+    getSolvedProblemById(problemId).then((res)=>{
+        console.log(res);
+        if(res){
+            setFeedback('You have already solved this problem!');
+        }
+        else{
+            addSolvedProblem(problemId).then(()=>{
+                checkAnswerAndGetScore({
+                    id:problemId,
+                    answer: selectedAnswer,
+                  }).then((res) => {
+                      if (res.data) {
+                          setFeedback('Correct!');
+                        } else {
+                          setFeedback('Incorrect. Try again!');
+                        }
+                  });
+            })
+        }
+    })
   };
 
   return (
@@ -55,7 +74,7 @@ const InsideProblem= () => {
         </button>
       </form>
       {feedback && (
-        <div className="mt-4 text-lg text-red-600 font-medium">
+        <div className={"mt-4 text-lg font-medium" + color}>
           {feedback}
         </div>
       )}

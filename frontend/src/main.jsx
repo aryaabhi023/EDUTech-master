@@ -19,7 +19,8 @@ import {
   CreateCourse,
   UploadChapter,
   InsideProblem,
-  InsideCourse
+  InsideCourse,
+  POTD
 } from "./Component/index.js";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -116,6 +117,10 @@ const router = createBrowserRouter([
       {
         path: "course/:courseId",
         element: <InsideCourse />,
+      },
+      {
+        path: "potd",
+        element: <POTD />,
       },
     ],
   },

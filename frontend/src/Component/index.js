@@ -15,6 +15,7 @@ import CreateCourse from "./CreateCourse";
 import UploadChapter from "./UploadChapter";
 import InsideProblem  from "./InsideProblem";
 import InsideCourse from "./InsideCourse";
+import POTD from "./POTD";
 
 export {
   Home,
@@ -34,4 +35,5 @@ export {
   UploadChapter,
   InsideProblem,
   InsideCourse,
+  POTD,
 };

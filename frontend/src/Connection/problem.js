@@ -42,3 +42,23 @@ export const checkAnswerAndGetScore=async(data)=>{
         return res;
     }
 }
+
+export const addSolvedProblem=async(id)=>{
+    try{
+        const res=await axios.post(backendUrl+"/api/v1/problem_solved/solved-problem",{problemId:id});
+        return res;
+    }catch(error){
+        console.log(error.message);
+        return null;
+    }
+}
+
+export const getSolvedProblemById=async(id)=>{
+    try{
+        const res=await axios.post(backendUrl+"/api/v1/problem_solved/get-solved-problem/",{problemId:id});
+        return res.data;
+    }catch(error){
+        console.log(error.message);
+        return null;
+    }
+}

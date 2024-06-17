@@ -19,3 +19,17 @@ export const addSolvedProblem = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+export const getSolvedProblemById=async(req,res)=>{
+  try{
+    const {problemId}=req.body;
+    const problem=await SolvedProblem.findOne({problemId});
+    if(problem){
+      res.status(200).json(true);
+    }else{
+      res.status(200).json(false);
+    }
+  }catch(error){
+    res.status(500).json({error:error.message});
+  }
+}
