@@ -3,20 +3,6 @@ import { useParams } from 'react-router-dom';
 import { getCourseById } from '../Connection/course';
 import { getChapterByNames } from '../Connection/chapter';
 
-
-const COURSE_DETAILS = [
-  {
-    title: 'Lec 1: Things to Know in C++/Java/Python or any language',
-    videoSource: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    questions: ['Question 1', 'Question 2', 'Question 3']
-  },
-  {
-    title: 'Lec 2: Build-up Logical Thinking',
-    videoSource: 'https://www.w3schools.com/html/mov_bbb.mp4',
-    questions: ['Question 1']
-  }
-];
-
 const sharedClasses = {
   card: 'bg-white dark:bg-zinc-800 shadow rounded-lg',
   header: 'flex justify-between items-center p-4 border-b border-red-100 dark:border-zinc-700 cursor-pointer',
@@ -38,7 +24,7 @@ const InsideCourse = () => {
     getCourseById(courseId).then((res)=>{
       setCourse(res.data);
       getChapterByNames(res?.data?.chapterNames).then((res2)=>{
-        setChapter(res2.data);
+        setChapter(res2);
       })
     })
   },[])
@@ -52,7 +38,7 @@ const InsideCourse = () => {
     <div className="max-w-4xl mx-auto p-4">
       <h2 className="text-xl font-semibold text-red-600 mb-4">{course?.name}</h2>
       <div className="space-y-4">
-        {chapter.map((ch, index) => (
+        { chapter?.map((ch, index) => (
           <div key={index} className={sharedClasses.card}>
             <div className={sharedClasses.header} onClick={() => toggleDetails(index)}>
               <span className={sharedClasses.textPrimary}>{ch.name}</span>

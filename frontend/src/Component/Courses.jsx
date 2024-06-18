@@ -12,7 +12,7 @@ export default function Courses() {
     }, []);
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4 bg-gradient-to-b from-teal-500 to-teal-700">
-        {courses.length && courses.map((course)=>(
+        {courses.length && courses?.map((course)=>(
             <div className="bg-white dark:bg-zinc-800 shadow-lg rounded-lg overflow-hidden" onClick={()=>navigate('/course/'+course?._id)}>
             <img src={course?.image} alt="Course Image" className="w-full h-48 object-cover" />
             <div className="p-4">
