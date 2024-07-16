@@ -9,8 +9,8 @@ function Profile() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-gradient-to-b from-teal-500 to-teal-700 dark:bg-gray-800 text-black dark:text-white p-8 md:p-8 rounded-lg shadow-md w-screen h-full md:h-screen">
-      <div className="flex items-center mb-4 mt-10">
+    <div className="bg-gradient-to-b from-teal-500 to-teal-700 dark:bg-gray-800 text-black dark:text-white p-8 md:p-8 rounded-lg shadow-md w-screen h-full md:h-screen flex flex-col items-center">
+      <div className="flex items-center mb-4 mt-10 bg-slate-200 rounded-lg shadow-md justify-center m-4 p-4 w-1/2 align-center">
         <div className="flex flex-col items-center justify-center">
           <img
             src={user?.avatar}
@@ -25,11 +25,15 @@ function Profile() {
               Edit
             </button>
         </div>
-        <div className="ml-3">
+        <div className="ml-8 flex flex-col items-center justify-center">
           <h2 className="text-lg font-bold">{user?.username}</h2>
           <p className="text-sm">{user?.fullname}</p>
           <p className="text-sm">Score: {user?.score}</p>
         </div>
+      </div>
+      <div className="flex items-center mb-4 mt-10 bg-slate-100 rounded-lg shadow-md justify-center m-4 p-4 w-3/4 align-center">
+        <h1 className="text-lg font-bold">Solved Problems</h1>
+        
       </div>
     </div>
   );

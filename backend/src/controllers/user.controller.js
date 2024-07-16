@@ -89,6 +89,7 @@ export const sendOtp = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+
     if (!(username || email)) {
       return res.status(400).json("Username or email is required");
     }
@@ -98,7 +99,7 @@ export const login = async (req, res) => {
     const user = await User.findOne({
       $or: [{ username }, { email }],
     });
-    const isPasswordMatched = user.isPasswordCorrect(password);
+    const isPasswordMatched = await user.isPasswordCorrect(password);
     if (!isPasswordMatched) {
       return res.status(400).json("Invalid credentials");
     }

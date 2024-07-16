@@ -23,8 +23,12 @@ export const addSolvedProblem = async (req, res) => {
 export const getSolvedProblemById=async(req,res)=>{
   try{
     const {problemId}=req.body;
-    const {id}=req.user;
-    const problem = await SolvedProblem.findOne({ userId: id, problemId: problemId });
+    const userId = req.user.id;
+    const problem = await SolvedProblem.findOne({
+      userId: userId,
+      problemId: problemId
+    });
+    console.log(problem);
     if(problem){
       res.status(200).json(true);
     }else{

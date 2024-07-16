@@ -116,7 +116,13 @@ const router = createBrowserRouter([
       },
       {
         path: "course/:courseId",
-        element: <InsideCourse />,
+        element:(
+          (
+            <AuthLayout>
+              <InsideCourse />
+            </AuthLayout>
+          )
+        ),
       },
       {
         path: "potd",
